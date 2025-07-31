@@ -18,7 +18,7 @@ Catalysis plays a central role in chemical manufacturing, energy production, and
 
 Some catalytically important reactions that are particularly compelling for ML-based studies include:
 
-- **Oxygeb Reduction Reaction** using transition metal complex solid solutions
+- **Oxygen Reduction Reaction** using transition metal complex solid solutions
 - **CO₂ Reduction** to value-added chemicals (e.g., methanol, formic acid)
 
 
