@@ -1,1 +1,18 @@
+# Core numerical and scientific stack
+numpy>=1.24
+scipy>=1.11
+pandas>=2.0
 
+# Machine learning and modelling
+scikit-learn>=1.3
+torch>=2.0           # optional, for future PyTorch-based ensembles
+matplotlib>=3.8
+seaborn>=0.12
+
+# Visualisation and plotting
+plotly>=5.17          # optional interactive plots
+jupyter>=1.0          # for notebooks
+
+# Utility and system tools
+tqdm>=4.65
+jsonschema>=4.19
