@@ -152,7 +152,7 @@ CAPSTONE_PROJECT/
 ├── config/               # Parameter settings for reproducible runs
 ├── notebooks/            # Exploratory diagnostics and analysis
 ├── results/              # Timestamped output folders with plots and summaries
-└── requirements.txt      # Dependency list´´
+└── requirements.txt      # Dependency list``
 
 
 Each optimisation run automatically generates timestamped folders under `data/` and `data_viz/`, containing:
