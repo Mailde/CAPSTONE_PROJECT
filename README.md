@@ -145,13 +145,14 @@ These skills are directly transferable to:
 
 To improve clarity and reproducibility, the repository is now organised into well-defined folders:
 
+```bash
 CAPSTONE_PROJECT/
-├── data/ # Input/output .npy files
-├── src/ # Optimisation scripts and surrogate models
-├── config/ # Parameter settings for reproducible runs
-├── notebooks/ # Exploratory diagnostics and analysis
-├── results/ # Timestamped output folders with plots and summaries
-└── requirements.txt # Dependency list
+├── data/                 # Input/output .npy files
+├── src/                  # Optimisation scripts and surrogate models
+├── config/               # Parameter settings for reproducible runs
+├── notebooks/            # Exploratory diagnostics and analysis
+├── results/              # Timestamped output folders with plots and summaries
+└── requirements.txt      # Dependency list
 
 
 Each optimisation run automatically generates timestamped folders under `data/` and `data_viz/`, containing:
