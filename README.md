@@ -3,9 +3,10 @@
 ## **1. Project Overview**
 
 This capstone project focuses on the challenge of **optimising unknown black-box functions using limited information**, simulating a real-world **Bayesian optimisation** scenario.  
-Each function represents a practical machine learning or scientific problem, such as radiation detection, robot control, or drug discovery, where the underlying process is hidden, and each evaluation is expensive.
+Each function represents a practical machine learning or scientific problem, such as radiation detection and drug discovery, where the underlying process is hidden, and each evaluation is expensive.
 
-The overall goal is to **maximise eight unknown functions** by proposing one new query point per function in each round. Because the internal structure of these functions is not provided, success depends on designing intelligent query strategies that balance **exploration** (discovering new regions) and **exploitation** (refining known promising areas).
+The overall goal is to **maximise eight unknown functions** by proposing one new query point per function in each round.  
+Because the internal structure of these functions is not provided, success depends on designing intelligent query strategies that balance **exploration** (discovering new regions) and **exploitation** (refining known promising areas).
 
 This project builds practical and transferable skills in:
 - Bayesian optimisation and surrogate modelling  
@@ -63,7 +64,7 @@ In the early rounds, I adopted a **broad exploratory approach** to capture the g
 
 - For **functions with multiple local optima**, I maintained a **strong exploratory component** to avoid premature convergence.  
 - For **unimodal functions**, I began balancing exploration and exploitation, focusing more heavily on regions that appeared promising based on early model predictions.  
-- I began **tuning hyperparameters** (e.g., kernel width, learning rate, and acquisition function parameters) rather than relying solely on heuristics.
+- I started **tuning hyperparameters** (e.g., kernel width, learning rate, acquisition function parameters) rather than relying solely on heuristics.
 
 ### **4.2 Modelling Approach**
 
@@ -86,58 +87,123 @@ The **acquisition function** governs the exploration–exploitation trade-off:
 - **Exploration:** Selects points with high uncertainty (large variance in model predictions) to gain new information.  
 - **Exploitation:** Focuses on regions with high predicted performance to refine and exploit known optima.  
 
-As the model matures, I progressively shift toward exploitation while maintaining a **small percentage of uncertainty-driven exploration** to continue improving model robustness.
+As the model matures, I progressively shift toward exploitation while maintaining a **small percentage of uncertainty-driven exploration** to improve model robustness.
 
 ### **4.4 Alternative Modelling Considerations**
 
-Although not implemented yet, incorporating **Support Vector Machines (SVMs)** could enhance classification of performance regions:
+Although not implemented initially, incorporating **Support Vector Machines (SVMs)** or **Neural Networks (NNs)** can enhance learning:
 
-- A **soft-margin SVM** could separate high- vs. low-performing regions, even in the presence of noisy evaluations.  
-- If the response surface is **nonlinear**, a **kernel SVM** (RBF or polynomial) could capture more complex relationships and boundaries.  
-- SVMs could therefore complement regression models by identifying promising “zones” within the search space for further optimisation.
+- A **soft-margin SVM** could separate high- vs. low-performing regions.  
+- A **kernel SVM** or **deep neural network** could model nonlinear, high-dimensional relationships.  
+- These models can complement regression-based surrogates by identifying promising “zones” within the search space.
 
 ---
 
 ## **5. Observations and Limitations**
 
-As data accumulates, several challenges become apparent:
+As data accumulates, several challenges became evident:
 
-- **Overfitting risk:** The surrogate model may overfit as complexity grows faster than the diversity of available data.  
-- **Irrelevant or redundant features:** In higher-dimensional functions, not all variables may contribute meaningfully to performance.  
-- **Computational cost:** Updating surrogate models (especially GPs) becomes more expensive with larger datasets.  
+- **Overfitting risk:** The surrogate model may overfit as complexity grows faster than data diversity.  
+- **Irrelevant features:** Not all dimensions contribute equally to performance, especially in higher dimensions.  
+- **Computational cost:** Updating Gaussian Processes becomes expensive as the dataset grows, but it was not a problem since we had few data points for each function. 
 
-To mitigate these issues:
-- Continue incorporating exploratory queries even when certain regions appear optimal.  
-- Even with a small number of input dimensions, performing feature importance analysis could help clarify which variables most strongly influence performance
-- Apply **regularisation** and **adaptive acquisition functions** to maintain balance.
+To address these issues:
+- Maintain some **exploratory diversity** to prevent stagnation.  
+- Conduct feature relevance analysis where possible.  
+- Introduce **regularisation** and **adaptive acquisition functions** to balance accuracy and efficiency.
 
 ---
 
-## **6. Future Directions**
+## **6. Future Directions (Pre–Query 5 Plan)**
 
-In the next rounds, I plan to:
-- Explore **adaptive acquisition functions** that adjust exploration weight dynamically.  
-- Investigate **alternative surrogate models**, such as Random Forest regressors or Neural Networks, for higher-dimensional tasks.  
-- Integrate **cross-validation** to monitor generalisation and prevent overfitting.  
-- Evaluate **ensemble strategies** that combine GP and SVM predictions to improve robustness.
+In future rounds, I planned to:
+- Explore **adaptive acquisition functions** that dynamically adjust exploration weight.  
+- Test **alternative surrogate models**, such as Random Forests or Neural Networks.  
+- Integrate **cross-validation** to prevent overfitting.  
+- Evaluate **ensemble approaches** that blend GP and NN predictions for greater robustness.
 
 ---
 
 ## **7. Learning Outcomes**
 
-This black-box setup mirrors the uncertainty and constraints typical of **real-world machine learning** and **data science projects**.  
+This black-box setup mirrors the uncertainty and constraints typical of **real-world machine learning** projects.  
 
-Through this process, I have learned to:
-- Make **strategic decisions under uncertainty**, guided by model predictions and evidence.  
-- Balance **data collection, model trust, and uncertainty management**.  
-- Apply iterative reasoning — using each round’s outcome to refine both the model and the search strategy.  
-- Recognise and mitigate **model limitations** such as overfitting and poor generalisation.
+Through this process, I learned to:
+- Make **strategic, evidence-based decisions** under uncertainty.  
+- Balance **model trust and data-driven exploration**.  
+- Iteratively refine models based on performance feedback.  
+- Mitigate risks of **overfitting** and **model instability**.
 
-These skills directly translate to real-world scenarios such as:
-- Hyperparameter tuning of ML models  
-- Experimental design in AI research  
-- Process optimisation in engineering and applied sciences  
+These skills are directly transferable to:
+- ML hyperparameter tuning  
+- Experimental design  
+- Process optimisation in applied research  
 
 ---
 
+## **8. Repository Structure (Updated for Query 5)**
+
+To improve clarity and reproducibility, the repository is now organised into well-defined folders:
+
+CAPSTONE_PROJECT/
+├── data/ # Input/output .npy files
+├── src/ # Optimisation scripts and surrogate models
+├── config/ # Parameter settings for reproducible runs
+├── notebooks/ # Exploratory diagnostics and analysis
+├── results/ # Timestamped output folders with plots and summaries
+└── requirements.txt # Dependency list
+
+
+Each optimisation run automatically generates timestamped folders under `data/` and `data_viz/`, containing:
+- Surrogate model plots (GP or NN ensemble)  
+- Batch suggestions and predicted next queries  
+- JSON summaries for traceability  
+
+This structure enhances **clarity**, **navigability**, and **reproducibility**, supporting both experimentation and formal reporting.
+
+---
+
+## **9. Coding Libraries and Packages**
+
+The project relies primarily on **scikit-learn**, **NumPy**, **SciPy**, **pandas**, and **Seaborn**.
+
+- **scikit-learn** provides the **Gaussian Process Regressor (Matern kernel)** and **MLPRegressor** for hybrid surrogate modelling.  
+- **SciPy’s Sobol sampling** ensures efficient coverage of the search space.  
+- **pandas** and **Seaborn** power data analysis, correlation visualisation, and convergence tracking.  
+
+These libraries balance **stability**, **interpretability**, and **efficiency**.  
+The main trade-off is between **accuracy** (from GPs) and **scalability** (from NNs).  
+This hybrid GP–NN ensemble approach combines the precision of GPs in early rounds with the flexibility and scalability of neural networks as data increases.
+
+---
+
+## **10. Documentation Updates**
+
+The documentation now includes:
+- A full description of the **hybrid surrogate strategy** (GP ↔ NN switching)  
+- Clear input/output definitions and data flow  
+- Auto-generated plots and summaries for each round  
+- Directory structure and reproducibility instructions  
+
+These updates were implemented and validated as part of the **Query 5 submission**, aligning documentation with the latest modelling strategy.
+
+---
+
+## **11. Reflection and Future Plans**
+
+**Repository improvements:**  
+I plan to modularise the optimisation code under `src/` and provide config templates for reproducibility.  
+Adding Jupyter notebooks for exploratory analysis will make the process more transparent and interactive.  
+
+**Framework direction:**  
+While **scikit-learn** remains optimal for fast prototyping, future iterations may incorporate **PyTorch-based ensembles** for richer uncertainty modelling in higher-dimensional spaces.  
+
+**Documentation:**  
+Future README updates will add quick-start instructions, improved visual interpretation guides, and reproducibility scripts.  
+
+**Completion status:**  
+The current repository meets the capstone’s expectations for structure, reproducibility, and transparency.  
+This analysis and documentation update are officially included as part of the **Query 5 submission**.
+
+---
 
