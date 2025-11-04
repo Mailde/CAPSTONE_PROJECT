@@ -147,13 +147,14 @@ To improve clarity and reproducibility, the repository is now organised into wel
 
 ```bash
 CAPSTONE_PROJECT/
-├── data/                 # Input/output .npy files
-├── src/                  # Optimisation scripts and surrogate models
+├── data/                 # Input/output .npy files (initial and updated queries)
+├── src/                  # Optimisation scripts, GP & NN surrogate models
 ├── config/               # Parameter settings for reproducible runs
-├── notebooks/            # Exploratory diagnostics and analysis
+├── notebooks/            # Exploratory diagnostics, visual analysis, and testing
 ├── results/              # Timestamped output folders with plots and summaries
-└── requirements.txt      # Dependency list``
-
+├── data_viz/             # Auto-generated visualisations (pair plots, EI/UCB, etc.)
+└── requirements.txt      # Dependency list
+```
 
 Each optimisation run automatically generates timestamped folders under `data/` and `data_viz/`, containing:
 - Surrogate model plots (GP or NN ensemble)  
