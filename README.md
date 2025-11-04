@@ -146,7 +146,7 @@ To improve clarity and reproducibility, the repository is now organised into wel
 
 ```bash
 CAPSTONE_PROJECT/
-├── initial_data/                 # Input/output .npy files (initial and updated queries)
+├── data/                 # Input/output .npy files (initial and updated queries at the end of competition)
 ├── src/                  # Optimisation scripts, GP & NN surrogate models
 ├── config/               # Parameter settings for reproducible runs
 ├── notebooks/            # Exploratory diagnostics, visual analysis, and testing
