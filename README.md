@@ -58,7 +58,7 @@ Each function varies in complexity and dimensionality. Some are **multimodal** (
 
 ## **4. Technical Approach**
 
-### **4.1 Early Rounds (1–3): Exploratory Phase**
+### **4.1 Early Rounds (1–4): Exploratory Phase**
 
 In the early rounds, I adopted a **broad exploratory approach** to capture the general landscape of each function.
 
@@ -99,7 +99,16 @@ Although not implemented initially, incorporating **Support Vector Machines (SVM
 
 ---
 
-## **5. Observations and Limitations**
+## **5. Query 5 **
+
+- Explore **adaptive acquisition functions** that dynamically adjust exploration weight.  
+- Test **alternative surrogate models**, such as Random Forests or Neural Networks.  
+- Integrate **cross-validation** to prevent overfitting.  
+- Evaluate **ensemble approaches** that blend GP and NN predictions for greater robustness.
+
+---
+
+## **6. Observations and Limitations**
 
 As data accumulates, several challenges became evident:
 
@@ -111,16 +120,6 @@ To address these issues:
 - Maintain some **exploratory diversity** to prevent stagnation.  
 - Conduct feature relevance analysis where possible.  
 - Introduce **regularisation** and **adaptive acquisition functions** to balance accuracy and efficiency.
-
----
-
-## **6. Future Directions (Pre–Query 5 Plan)**
-
-In future rounds, I planned to:
-- Explore **adaptive acquisition functions** that dynamically adjust exploration weight.  
-- Test **alternative surrogate models**, such as Random Forests or Neural Networks.  
-- Integrate **cross-validation** to prevent overfitting.  
-- Evaluate **ensemble approaches** that blend GP and NN predictions for greater robustness.
 
 ---
 
