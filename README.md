@@ -146,12 +146,11 @@ To improve clarity and reproducibility, the repository is now organised into wel
 
 ```bash
 CAPSTONE_PROJECT/
-├── data/                 # Input/output .npy files (initial and updated queries)
+├── initial_data/                 # Input/output .npy files (initial and updated queries)
 ├── src/                  # Optimisation scripts, GP & NN surrogate models
 ├── config/               # Parameter settings for reproducible runs
 ├── notebooks/            # Exploratory diagnostics, visual analysis, and testing
 ├── results/              # Timestamped output folders with plots and summaries
-├── data_viz/             # Auto-generated visualisations (pair plots, EI/UCB, etc.)
 └── requirements.txt      # Dependency list
 ```
 
